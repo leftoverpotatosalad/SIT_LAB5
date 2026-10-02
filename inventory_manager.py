@@ -57,5 +57,48 @@ def save_inventory(inventory):
 
     print("Inventory saved successfully to inventory.json.")
 
+def display_all(inventory):
+    print("\nCurrent Inventory")
+    print("------------------------------------------------")
 
+    if len(inventory) == 0:
+        print("No products in inventory.")
+
+    else:
+        for product in inventory:
+            print(
+                "ID:", product["id"],
+                "| Name:", product["name"],
+                "| Price: $" + format(product["price"], ".2f"),
+                "| Stock:", product["stock"]
+            )
+
+    print("------------------------------------------------")
+
+    def update_stock(inventory):
+        print("\nUpdate Stock")
+
+    product_id = input("Enter Product ID: ")
+
+    for product in inventory:
+
+        if product["id"] == product_id:
+
+            print("Product Found:")
+            print("Name:", product["name"])
+            print("Current Stock:", product["stock"])
+
+            try:
+                new_stock = int(input("New Stock Quantity: "))
+
+            except ValueError:
+                print("Invalid stock quantity.")
+                return
+
+            product["stock"] = new_stock
+
+            print("Stock updated successfully!")
+            return
+
+    print("Product not found.")
 
