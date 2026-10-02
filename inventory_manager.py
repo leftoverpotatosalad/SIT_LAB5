@@ -31,19 +31,31 @@ def add_product(inventory):
     print("Product added successfully!")
 
 def load_inventory():
-    if os.path.exists("inventory.json"):
-        print("inventory.json found.")
-
+    try:
         file = open("inventory.json", "r")
         inventory = json.load(file)
         file.close()
 
+        print("inventory.json found.")
         print("Inventory loaded successfully.")
+
         return inventory
 
-    else:
+    except FileNotFoundError:
         print("inventory.json not found.")
         print("Starting with empty inventory.")
+
         return []
-    
-    
+
+
+def save_inventory(inventory):
+    file = open("inventory.json", "w")
+
+    json.dump(inventory, file, indent=4)
+
+    file.close()
+
+    print("Inventory saved successfully to inventory.json.")
+
+
+
