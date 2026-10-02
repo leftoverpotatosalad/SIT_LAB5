@@ -14,5 +14,6 @@ def add_product(inventory):
         print("Invalid input. Price must be a number and stock must be an integer.")
         return
 
+
     
     
